@@ -14,7 +14,7 @@ const Playground = () => {
     <main className='container p-8 mx-auto '>
       {data?.map((author) => {
         return (
-          <li className='p-2' key={author?.id}>
+          <li className='p-2' key={author?._id}>
             {author?.name}
           </li>
         )
