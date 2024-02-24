@@ -8,3 +8,13 @@ export async function GET(request, { params }) {
   const author = await Authors.findOne({ _id: id })
   return NextResponse.json(author, { status: 200 })
 }
+
+export async function PUT(request, { params }) {
+  const { id } = params
+  const updatedAuthor = await request.json()
+
+  await connectDB()
+  await Authors.findByIdAndUpdate(id, { ...updatedAuthor })
+
+  return NextResponse.json({ message: 'Author updated' }, { status: 200 })
+}
