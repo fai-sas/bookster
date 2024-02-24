@@ -8,3 +8,9 @@ export async function POST(request) {
   await Authors.create({ name, age })
   return NextResponse.json({ message: 'Author Created' }, { status: 201 })
 }
+
+export async function GET() {
+  await connectDB()
+  const authors = await Authors.find()
+  return NextResponse.json(authors)
+}

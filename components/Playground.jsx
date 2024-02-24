@@ -4,7 +4,7 @@ import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
 
 const Playground = () => {
   const { data, isLoading } = useGetAuthorsQuery()
-  console.log(data?.posts)
+  console.log(data)
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
@@ -12,10 +12,10 @@ const Playground = () => {
 
   return (
     <main className='container p-8 mx-auto '>
-      {data?.posts?.map((post) => {
+      {data?.map((author) => {
         return (
-          <li className='' key={post?.id}>
-            {post?.title}
+          <li className='p-2' key={author?.id}>
+            {author?.name}
           </li>
         )
       })}
