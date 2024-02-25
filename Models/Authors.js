@@ -2,8 +2,22 @@ import mongoose from 'mongoose'
 
 const Authors = mongoose.Schema(
   {
-    name: String,
-    age: Number,
+    name: {
+      type: String,
+      required: [true, 'Please provide the author name'],
+    },
+    description: {
+      type: String,
+      required: [true, 'Please provide description'],
+    },
+    createdBy: {
+      type: String,
+      required: [true, 'Please provide user Id'],
+    },
+    image: {
+      type: String,
+      required: [true, 'Please provide the author image'],
+    },
   },
   {
     timestamps: true,

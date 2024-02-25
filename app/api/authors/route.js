@@ -2,13 +2,20 @@ import Authors from '@/Models/Authors'
 import connectDB from '@/lib/connectDB'
 import { NextResponse } from 'next/server'
 
-export const dynamic = 'force-dynamic'
-
 export async function POST(request) {
   try {
-    const { name, age } = await request.json()
+    const result = await request.json()
+
+    if (!result.image) {
+      return NextResponse.json(
+        { message: 'Image is required' },
+        { status: 400 }
+      )
+    }
+
     await connectDB()
-    await Authors.create({ name, age })
+
+    await Authors.create(result)
 
     return NextResponse.json({ message: 'Author Created' }, { status: 201 })
   } catch (error) {

@@ -53,18 +53,6 @@ export async function PUT(request, { params }) {
   }
 }
 
-// export async function DELETE(request, { params }) {
-//   const { id } = params
-
-//   await connectDB()
-//   await Authors.findByIdAndDelete(id)
-
-//   return NextResponse.json(
-//     { message: `Author deleted with id : ${id}` },
-//     { status: 200 }
-//   )
-// }
-
 export async function DELETE(request, { params }) {
   try {
     const { id } = params
