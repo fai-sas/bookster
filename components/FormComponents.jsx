@@ -48,7 +48,7 @@ export function CustomFormSelect({ name, control, items, labelText }) {
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {items.map((item) => {
+              {items?.map((item) => {
                 return (
                   <SelectItem key={item} value={item}>
                     {item}
