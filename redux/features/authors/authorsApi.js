@@ -5,7 +5,14 @@ export const authorsAPI = apiSlice.injectEndpoints({
     getAuthors: builder.query({
       query: () => '/authors',
     }),
+    addAuthor: builder.mutation({
+      query: (data) => ({
+        url: '/authors',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
-export const { useGetAuthorsQuery } = authorsAPI
+export const { useGetAuthorsQuery, useAddAuthorMutation } = authorsAPI
