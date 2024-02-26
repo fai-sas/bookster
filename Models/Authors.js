@@ -10,9 +10,13 @@ const Authors = mongoose.Schema(
       type: String,
       required: [true, 'Please provide description'],
     },
-    createdBy: {
+    createdByUserId: {
       type: String,
       required: [true, 'Please provide user Id'],
+    },
+    createdByUserName: {
+      type: String,
+      required: [true, 'Please provide user name'],
     },
     image: {
       type: String,

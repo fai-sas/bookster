@@ -2,11 +2,13 @@
 
 import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
 import { useAuth } from '@clerk/nextjs'
+import { useUser } from '@clerk/clerk-react'
 
 const Playground = () => {
   const { isLoaded, userId, sessionId, getToken } = useAuth()
+  const { isSignedIn, user } = useUser()
   const { data, isLoading } = useGetAuthorsQuery()
-  console.log(data, userId)
+  console.log(userId, user, isSignedIn)
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
