@@ -20,7 +20,7 @@ const AuthorsPage = () => {
             <div key={author?._id} className='m-8 bg-gray-100 '>
               <div className='p-8 mx-auto '>
                 <Link href={`/authors/${author?._id}`}>
-                  <div className='max-w-xs p-2 duration-150 bg-white rounded-lg shadow cursor-pointer hover:scale-105 hover:shadow-md'>
+                  <div className='p-2 duration-150 bg-white rounded-lg shadow cursor-pointer hover:scale-105 hover:shadow-md'>
                     <Image
                       src={image}
                       alt={author?.name}
@@ -34,6 +34,13 @@ const AuthorsPage = () => {
                     <p className='pl-4 my-4 font-bold text-gray-500'>
                       {author?.description}
                     </p>
+                    <div className='flex justify-between p-4 '>
+                      <Link href='/add-author'>
+                        <p>Edit</p>
+                      </Link>
+
+                      <p>Delete</p>
+                    </div>
                   </div>
                 </Link>
               </div>

@@ -6,6 +6,6 @@ export const apiSlice = createApi({
     baseUrl: 'http://localhost:3000/api',
     // baseUrl: 'https://bookster-alpha.vercel.app/api',
   }),
-  tagTypes: [],
+  tagTypes: ['Authors', 'SingleAuthor'],
   endpoints: (builder) => ({}),
 })
