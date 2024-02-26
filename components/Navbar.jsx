@@ -7,6 +7,7 @@ const Navbar = () => {
       <div>
         <h1 className='text-lg font-bold '>Bookster</h1>
       </div>
+
       <AuthorDropdown />
       <div className='flex items-center gap-x-4'>
         <UserButton showName afterSignOutUrl='/' />
