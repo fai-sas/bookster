@@ -1,10 +1,8 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {}
-
-// export default nextConfig
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
   async headers() {
     return [
       {
@@ -29,5 +27,3 @@ const nextConfig = {
 }
 
 export default nextConfig
-
-// module.exports = nextConfig

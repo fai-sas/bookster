@@ -43,7 +43,7 @@ const CreateAuthorForm = () => {
 
   function onSubmit(values) {
     addAuthor(values)
-
+    router.push('/authors')
     form.reset()
   }
 
