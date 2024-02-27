@@ -1,12 +1,22 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
+import {
+  useDeleteAuthorMutation,
+  useGetAuthorsQuery,
+} from '@/redux/features/authors/authorsApi'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const AuthorsPage = () => {
   const { data, isLoading } = useGetAuthorsQuery()
+  const [deleteAuthor, { isSuccess, isError }] = useDeleteAuthorMutation()
+
+  const handleDelete = (authorId) => {
+    if (authorId) {
+      deleteAuthor(authorId)
+    }
+  }
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
@@ -39,11 +49,16 @@ const AuthorsPage = () => {
                       <Link href={`/edit-author/${author?._id}`}>
                         <Button>edit</Button>
                       </Link>
-
-                      <p>Delete</p>
                     </div>
                   </div>
                 </Link>
+                <button
+                  className='m-4 '
+                  type='button'
+                  onClick={() => handleDelete(author?._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           )
