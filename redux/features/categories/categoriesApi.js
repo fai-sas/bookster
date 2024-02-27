@@ -2,7 +2,7 @@ const { apiSlice } = require('../api/apiSlice')
 
 export const categoriesAPI = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAuthors: builder.query({
+    getCategories: builder.query({
       query: () => '/categories',
       providesTags: ['Categories'],
     }),
@@ -36,12 +36,20 @@ export const categoriesAPI = apiSlice.injectEndpoints({
         },
       ],
     }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `/categories/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Categories'],
+    }),
   }),
 })
 
 export const {
-  useGetAuthorsQuery,
+  useGetCategoriesQuery,
   useGetSingleCategoryQuery,
   useAddCategoryMutation,
   useEditCategoryMutation,
+  useDeleteCategoryMutation,
 } = categoriesAPI
