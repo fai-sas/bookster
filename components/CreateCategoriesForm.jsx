@@ -6,20 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
-import { CustomFormField, CustomFormSelect } from './FormComponents'
-import ImageUpload from './ImageUpload'
-import { useAddAuthorMutation } from '@/redux/features/authors/authorsApi'
+import { CustomFormField } from './FormComponents'
+import { useAddCategoryMutation } from '@/redux/features/categories/categoriesApi'
 import { toast } from 'sonner'
 
 export const createAndEditAuthorSchema = z.object({
   name: z.string().min(2, {
     message: 'name must be at least 2 characters',
-  }),
-  description: z.string().min(2, {
-    message: 'description must be at least 2 characters.',
-  }),
-  image: z.array(z.string()).nonempty({
-    message: 'At least one image must be uploaded.',
   }),
 })
 
@@ -32,7 +25,8 @@ const defaultFormValues = {
 }
 
 const CreateCategoriesForm = () => {
-  const [addAuthor, { isLoading, isSuccess, isError }] = useAddAuthorMutation()
+  const [addCategory, { isLoading, isSuccess, isError }] =
+    useAddCategoryMutation()
 
   const form = useForm({
     resolver: zodResolver(createAndEditAuthorSchema),
@@ -42,8 +36,8 @@ const CreateCategoriesForm = () => {
   const router = useRouter()
 
   function onSubmit(values) {
-    addAuthor(values)
-    router.push('/authors')
+    console.log(values)
+    addCategory(values)
     form.reset()
   }
 
