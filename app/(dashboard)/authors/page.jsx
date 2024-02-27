@@ -45,20 +45,20 @@ const AuthorsPage = () => {
                     <p className='pl-4 my-4 font-bold text-gray-500'>
                       {author?.description}
                     </p>
-                    <div className='flex justify-between p-4 '>
-                      <Link href={`/edit-author/${author?._id}`}>
-                        <Button>edit</Button>
-                      </Link>
-                    </div>
                   </div>
                 </Link>
-                <button
-                  className='m-4 '
-                  type='button'
-                  onClick={() => handleDelete(author?._id)}
-                >
-                  Delete
-                </button>
+                <div className='flex justify-between p-4 '>
+                  <Link href={`/edit-author/${author?._id}`}>
+                    <Button>Edit</Button>
+                  </Link>
+                  <Button
+                    variant='destructive'
+                    type='button'
+                    onClick={() => handleDelete(author?._id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
             </div>
           )

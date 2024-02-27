@@ -31,7 +31,7 @@ const defaultFormValues = {
   fullName: '',
 }
 
-const CreateAuthorForm = () => {
+const CreateCategoriesForm = () => {
   const [addAuthor, { isLoading, isSuccess, isError }] = useAddAuthorMutation()
 
   const form = useForm({
@@ -55,24 +55,21 @@ const CreateAuthorForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className='p-8 rounded bg-muted'
       >
-        <h2 className='mb-6 text-4xl font-semibold capitalize'>add author</h2>
+        <h2 className='mb-6 text-4xl font-semibold capitalize'>add category</h2>
         <div className='grid items-start gap-4 md:grid-cols-2 lg:grid-cols-2'>
           <CustomFormField name='name' control={form.control} />
-          <CustomFormField name='description' control={form.control} />
-          <ImageUpload name='image' control={form.control} form={form} />
-          {errors.image && <p>{errors.image.message}</p>}
           <Button
             type='submit'
             className='self-end capitalize'
             disabled={isLoading}
           >
-            {isLoading ? 'loading...' : 'add author'}
+            {isLoading ? 'loading...' : 'add category'}
           </Button>
-          {isSuccess && toast('Author has been created')}
+          {isSuccess && toast('Category has been created')}
         </div>
       </form>
     </Form>
   )
 }
 
-export default CreateAuthorForm
+export default CreateCategoriesForm
