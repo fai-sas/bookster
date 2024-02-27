@@ -6,6 +6,15 @@ export const categoriesAPI = apiSlice.injectEndpoints({
       query: () => '/categories',
       providesTags: ['Categories'],
     }),
+    getSingleCategory: builder.query({
+      query: (id) => `/categories/${id}`,
+      providesTags: (arg) => [
+        {
+          type: 'SingleCategory',
+          id: arg,
+        },
+      ],
+    }),
     addCategory: builder.mutation({
       query: (data) => ({
         url: '/categories',
@@ -16,4 +25,8 @@ export const categoriesAPI = apiSlice.injectEndpoints({
   }),
 })
 
-export const { useGetAuthorsQuery, useAddCategoryMutation } = categoriesAPI
+export const {
+  useGetAuthorsQuery,
+  useGetSingleCategoryQuery,
+  useAddCategoryMutation,
+} = categoriesAPI
