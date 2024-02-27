@@ -56,3 +56,30 @@ export async function PUT(request, { params }) {
     )
   }
 }
+
+export async function DELETE(request, { params }) {
+  try {
+    const { id } = params
+
+    await connectDB()
+    const deletedCategory = await Categories.findByIdAndDelete(id)
+
+    if (!deletedCategory) {
+      return NextResponse.json(
+        { message: `No category found with id: ${id}` },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json(
+      { message: `category deleted with id: ${id}` },
+      { status: 200 }
+    )
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json(
+      { message: `Internal Server Error: ${error.message}` },
+      { status: 500 }
+    )
+  }
+}
