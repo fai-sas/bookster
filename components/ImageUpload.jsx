@@ -26,6 +26,7 @@ const ImageUpload = ({ control, onSuccess, form }) => {
     >
       {({ open }) => (
         <button
+          type='button'
           className='p-2 bg-purple-300 rounded-md btn btn-primary '
           onClick={() => open()}
         >

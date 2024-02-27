@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -35,8 +36,8 @@ const AuthorsPage = () => {
                       {author?.description}
                     </p>
                     <div className='flex justify-between p-4 '>
-                      <Link href='/add-author'>
-                        <p>Edit</p>
+                      <Link href={`/edit-author/${author?._id}`}>
+                        <Button>edit</Button>
                       </Link>
 
                       <p>Delete</p>
