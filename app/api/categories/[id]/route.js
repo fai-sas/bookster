@@ -28,3 +28,31 @@ export async function GET(request, { params }) {
     )
   }
 }
+
+export async function PUT(request, { params }) {
+  try {
+    const { id } = params
+    const updatedCategory = await request.json()
+
+    await connectDB()
+
+    const result = await Categories.findByIdAndUpdate(id, {
+      ...updatedCategory,
+    })
+
+    if (!result) {
+      return NextResponse.json(
+        { message: `No Category found with id : ${id}` },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ message: 'Category updated' }, { status: 200 })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json(
+      { message: `Internal Server Error: ${error.message}` },
+      { status: 500 }
+    )
+  }
+}
