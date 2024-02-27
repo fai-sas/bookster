@@ -36,6 +36,13 @@ export const authorsAPI = apiSlice.injectEndpoints({
         },
       ],
     }),
+    deleteAuthor: builder.mutation({
+      query: (id) => ({
+        url: `/authors/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Authors'],
+    }),
   }),
 })
 
@@ -44,4 +51,5 @@ export const {
   useGetSingleAuthorQuery,
   useAddAuthorMutation,
   useEditAuthorMutation,
+  useDeleteAuthorMutation,
 } = authorsAPI
