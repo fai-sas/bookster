@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 
 const Books = mongoose.Schema(
   {
@@ -78,6 +78,12 @@ const Books = mongoose.Schema(
       type: String,
       required: [true, 'Please provide user name'],
     },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Reviews',
+      },
+    ],
   },
 
   {
