@@ -7,8 +7,13 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { CustomFormField } from './FormComponents'
-import { useAddCategoryMutation } from '@/redux/features/categories/categoriesApi'
+
+import {
+  useEditCategoryMutation,
+  useGetSingleCategoryQuery,
+} from '@/redux/features/categories/categoriesApi'
 import { toast } from 'sonner'
+import { useState } from 'react'
 
 export const createAndEditCategorySchema = z.object({
   name: z.string().min(2, {
@@ -16,32 +21,24 @@ export const createAndEditCategorySchema = z.object({
   }),
 })
 
-const defaultFormValues = {
-  name: '',
-  description: '',
-  image: [],
-  userId: '',
-  fullName: '',
-}
+const EditCategoryForm = ({ id }) => {
+  const { data: singleCategory } = useGetSingleCategoryQuery(id)
 
-const CreateCategoriesForm = () => {
-  const [addCategory, { isLoading, isSuccess, isError }] =
-    useAddCategoryMutation()
+  const [editCategory, { isLoading, isSuccess, isError }] =
+    useEditCategoryMutation()
 
   const form = useForm({
     resolver: zodResolver(createAndEditCategorySchema),
-    defaultValues: defaultFormValues,
+    defaultValues: {
+      name: singleCategory?.name || '',
+    },
   })
 
-  const router = useRouter()
-
   function onSubmit(values) {
-    console.log(values)
-    addCategory(values)
+    editAuthor({ id, data: JSON.stringify(values) })
+    console.log(id, values)
     form.reset()
   }
-
-  const { errors } = form.formState
 
   return (
     <Form {...form}>
@@ -49,7 +46,9 @@ const CreateCategoriesForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className='p-8 rounded bg-muted'
       >
-        <h2 className='mb-6 text-4xl font-semibold capitalize'>add category</h2>
+        <h2 className='mb-6 text-4xl font-semibold capitalize'>
+          edit category
+        </h2>
         <div className='grid items-start gap-4 md:grid-cols-2 lg:grid-cols-2'>
           <CustomFormField name='name' control={form.control} />
           <Button
@@ -57,13 +56,12 @@ const CreateCategoriesForm = () => {
             className='self-end capitalize'
             disabled={isLoading}
           >
-            {isLoading ? 'loading...' : 'add category'}
+            {isLoading ? 'loading...' : 'edit category'}
           </Button>
-          {isSuccess && toast('Category has been created')}
+          {isSuccess && toast('Category has been edited')}
         </div>
       </form>
     </Form>
   )
 }
-
-export default CreateCategoriesForm
+export default EditCategoryForm
