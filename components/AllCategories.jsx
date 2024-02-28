@@ -1,6 +1,7 @@
 'use client'
 
 import { useGetCategoriesQuery } from '@/redux/features/categories/categoriesApi'
+import Link from 'next/link'
 
 const AllCategories = () => {
   const { data, isLoading } = useGetCategoriesQuery()
@@ -15,7 +16,7 @@ const AllCategories = () => {
       {data?.categories?.map((category) => {
         return (
           <li key={category?._id} className='p-2 my-8 text-2xl '>
-            {category?.name}
+            <Link href={`/categories/${category?._id}`}>{category?.name}</Link>
           </li>
         )
       })}
