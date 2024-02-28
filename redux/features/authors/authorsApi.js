@@ -21,6 +21,7 @@ export const authorsAPI = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['Authors'],
     }),
     editAuthor: builder.mutation({
       query: ({ id, data }) => ({
@@ -29,7 +30,7 @@ export const authorsAPI = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: (arg) => [
-        'Authors',
+        ['Authors'],
         {
           type: 'SingleAuthor',
           id: arg.id,

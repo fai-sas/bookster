@@ -21,6 +21,7 @@ export const categoriesAPI = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['Categories'],
     }),
     editCategory: builder.mutation({
       query: ({ id, data }) => ({
@@ -29,7 +30,7 @@ export const categoriesAPI = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: (arg) => [
-        'Categories',
+        ['Categories'],
         {
           type: 'SingleCategory',
           id: arg.id,

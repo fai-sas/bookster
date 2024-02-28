@@ -37,7 +37,9 @@ const CreateCategoriesForm = () => {
 
   function onSubmit(values) {
     console.log(values)
+
     addCategory(values)
+
     form.reset()
   }
 
@@ -59,7 +61,6 @@ const CreateCategoriesForm = () => {
           >
             {isLoading ? 'loading...' : 'add category'}
           </Button>
-          {isSuccess && toast('Category has been created')}
         </div>
       </form>
     </Form>
