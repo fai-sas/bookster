@@ -1,4 +1,4 @@
-import mongoose, { Types } from 'mongoose'
+import mongoose, { Schema, Types } from 'mongoose'
 
 const Books = mongoose.Schema(
   {

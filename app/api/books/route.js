@@ -1,4 +1,4 @@
-import Authors from '@/Models/Authors'
+import Books from '@/Models/Books'
 import connectDB from '@/lib/connectDB'
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs'
@@ -11,8 +11,6 @@ export async function POST(request) {
 
     const name = user?.firstName
 
-    console.log('request received', userId, name)
-
     const result = await request.json()
 
     if (!result?.image?.length === 0) {
@@ -24,35 +22,15 @@ export async function POST(request) {
 
     await connectDB()
 
-    const authorData = {
+    const bookData = {
       ...result,
       createdByUserId: userId,
       createdByUserName: name,
     }
 
-    await Authors.create(authorData)
+    await Books.create(bookData)
 
-    return NextResponse.json({ message: 'Author Created' }, { status: 201 })
-  } catch (error) {
-    console.error(error)
-    return NextResponse.json(
-      { message: `Internal Server Error: ${error.message}` },
-      { status: 500 }
-    )
-  }
-}
-
-export async function GET() {
-  try {
-    await connectDB()
-    const authors = await Authors.find()
-    const queryObject = {}
-
-    if (authors.length === 0) {
-      return NextResponse.json({ message: 'No Author Found' }, { status: 404 })
-    }
-    const totalAuthors = await Authors.countDocuments(queryObject)
-    return NextResponse.json({ totalAuthors, authors })
+    return NextResponse.json({ message: 'Book Created' }, { status: 201 })
   } catch (error) {
     console.error(error)
     return NextResponse.json(

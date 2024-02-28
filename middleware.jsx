@@ -7,6 +7,8 @@ export default authMiddleware({
     '/api/authors/(.*)',
     '/api/categories',
     '/api/categories/(.*)',
+    '/api/books',
+    '/api/books/(.*)',
   ],
 })
 
