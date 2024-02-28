@@ -1,11 +1,22 @@
 'use client'
 
-import { useGetCategoriesQuery } from '@/redux/features/categories/categoriesApi'
+import {
+  useDeleteCategoryMutation,
+  useGetCategoriesQuery,
+} from '@/redux/features/categories/categoriesApi'
 import Link from 'next/link'
 import { Button } from './ui/button'
+import { toast } from 'sonner'
 
 const AllCategories = () => {
   const { data, isLoading } = useGetCategoriesQuery()
+  const [deleteCategory, { isSuccess }] = useDeleteCategoryMutation()
+
+  const handleDelete = (categoryId) => {
+    if (categoryId) {
+      deleteCategory(categoryId)
+    }
+  }
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
@@ -29,6 +40,7 @@ const AllCategories = () => {
               >
                 Delete
               </Button>
+              {isSuccess && toast('Category has been deleted')}
             </div>
           </li>
         )
