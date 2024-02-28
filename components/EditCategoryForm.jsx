@@ -35,7 +35,7 @@ const EditCategoryForm = ({ id }) => {
   })
 
   function onSubmit(values) {
-    editAuthor({ id, data: JSON.stringify(values) })
+    editCategory({ id, data: JSON.stringify(values) })
     console.log(id, values)
     form.reset()
   }

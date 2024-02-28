@@ -2,6 +2,7 @@
 
 import { useGetCategoriesQuery } from '@/redux/features/categories/categoriesApi'
 import Link from 'next/link'
+import { Button } from './ui/button'
 
 const AllCategories = () => {
   const { data, isLoading } = useGetCategoriesQuery()
@@ -17,6 +18,18 @@ const AllCategories = () => {
         return (
           <li key={category?._id} className='p-2 my-8 text-2xl '>
             <Link href={`/categories/${category?._id}`}>{category?.name}</Link>
+            <div className='flex gap-4 p-4 '>
+              <Link href={`/edit-category/${category?._id}`}>
+                <Button>Edit</Button>
+              </Link>
+              <Button
+                variant='destructive'
+                type='button'
+                onClick={() => handleDelete(category?._id)}
+              >
+                Delete
+              </Button>
+            </div>
           </li>
         )
       })}
