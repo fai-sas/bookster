@@ -15,7 +15,15 @@ export const booksAPI = apiSlice.injectEndpoints({
         },
       ],
     }),
+    addBook: builder.mutation({
+      query: (data) => ({
+        url: '/books',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
-export const { useGetBooksQuery, useGetSingleBookQuery } = booksAPI
+export const { useGetBooksQuery, useGetSingleBookQuery, useAddBookMutation } =
+  booksAPI
