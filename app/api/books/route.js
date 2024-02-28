@@ -39,3 +39,23 @@ export async function POST(request) {
     )
   }
 }
+
+export async function GET() {
+  try {
+    await connectDB()
+    const books = await Books.find()
+    const queryObject = {}
+
+    if (books.length === 0) {
+      return NextResponse.json({ message: 'No Books Found' }, { status: 404 })
+    }
+    const totalBooks = await Books.countDocuments(queryObject)
+    return NextResponse.json({ totalBooks, books })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json(
+      { message: `Internal Server Error: ${error.message}` },
+      { status: 500 }
+    )
+  }
+}
