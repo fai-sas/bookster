@@ -7,6 +7,10 @@ import { usePathname } from 'next/navigation'
 
 const links = [
   {
+    href: '/books',
+    label: 'Books',
+  },
+  {
     href: '/authors',
     label: 'Authors',
   },

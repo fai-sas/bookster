@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from './ui/input'
 
-export function CustomFormField({ name, control }) {
+export function CustomFormField({ name, type, control }) {
   return (
     <FormField
       control={control}
@@ -24,7 +24,27 @@ export function CustomFormField({ name, control }) {
         <FormItem>
           <FormLabel className='capitalize'>{name}</FormLabel>
           <FormControl>
-            <Input {...field} />
+            <Input
+              {...field}
+              type={type}
+              value={field.value || ''}
+              onChange={(e) => {
+                let value
+
+                if (type === 'number') {
+                  value = parseFloat(e.target.value)
+                } else if (type === 'date') {
+                  const inputDate = new Date(e.target.value)
+                  value = isNaN(inputDate)
+                    ? ''
+                    : inputDate.toISOString().split('T')[0]
+                } else {
+                  value = e.target.value
+                }
+
+                field.onChange(value)
+              }}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
