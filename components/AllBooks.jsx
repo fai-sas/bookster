@@ -6,11 +6,21 @@ import {
 } from '@/redux/features/categories/categoriesApi'
 import Link from 'next/link'
 import { Button } from './ui/button'
-import { useGetBooksQuery } from '@/redux/features/books/booksApi'
+import {
+  useDeleteBookMutation,
+  useGetBooksQuery,
+} from '@/redux/features/books/booksApi'
 import Image from 'next/image'
 
 const AllBooks = () => {
   const { data, isLoading } = useGetBooksQuery()
+  const [deleteBook, { isSuccess, isError }] = useDeleteBookMutation()
+
+  const handleDelete = (bookId) => {
+    if (bookId) {
+      deleteBook(bookId)
+    }
+  }
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
