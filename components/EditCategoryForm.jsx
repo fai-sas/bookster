@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
@@ -14,12 +13,7 @@ import {
 } from '@/redux/features/categories/categoriesApi'
 import { toast } from 'sonner'
 import { useState } from 'react'
-
-export const createAndEditCategorySchema = z.object({
-  name: z.string().min(2, {
-    message: 'name must be at least 2 characters',
-  }),
-})
+import { createAndEditCategorySchema } from '@/lib/formSchema'
 
 const EditCategoryForm = ({ id }) => {
   const { data: singleCategory } = useGetSingleCategoryQuery(id)

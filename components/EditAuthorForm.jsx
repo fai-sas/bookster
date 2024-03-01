@@ -14,16 +14,7 @@ import {
 } from '@/redux/features/authors/authorsApi'
 import { toast } from 'sonner'
 import { useState } from 'react'
-
-export const createAndEditAuthorSchema = z.object({
-  name: z.string().min(2, {
-    message: 'name must be at least 2 characters',
-  }),
-  description: z.string().min(2, {
-    message: 'description must be at least 2 characters.',
-  }),
-  image: z.array(z.string()),
-})
+import { createAndEditAuthorSchema } from '@/lib/formSchema'
 
 const EditAuthorForm = ({ id }) => {
   const { data: singleAuthor } = useGetSingleAuthorQuery(id)

@@ -9,12 +9,7 @@ import { Form } from '@/components/ui/form'
 import { CustomFormField } from './FormComponents'
 import { useAddCategoryMutation } from '@/redux/features/categories/categoriesApi'
 import { toast } from 'sonner'
-
-export const createAndEditCategorySchema = z.object({
-  name: z.string().min(2, {
-    message: 'name must be at least 2 characters',
-  }),
-})
+import { createAndEditCategorySchema } from '@/lib/formSchema'
 
 const defaultFormValues = {
   name: '',
