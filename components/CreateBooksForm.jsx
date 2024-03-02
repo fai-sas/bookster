@@ -22,6 +22,7 @@ const defaultFormValues = {
   author: '',
   isbn: '',
   edition: 1,
+  featured: false,
   category: 'Fiction',
   language: '',
   format: 'Paperback',
@@ -38,6 +39,7 @@ const CreateBooksForm = () => {
   const authorNames = authors?.authors?.map((author) => author.name)
 
   const formats = ['Hardcover', 'Paperback', 'Audiobook', 'E-book']
+  const featured = [true, false]
 
   const [addBook, { isLoading, isSuccess, isError }] = useAddBookMutation()
 
@@ -69,8 +71,18 @@ const CreateBooksForm = () => {
             control={form.control}
             items={authorNames}
           />
+          <CustomFormSelect
+            name='featured'
+            control={form.control}
+            items={featured}
+            type='boolean'
+          />
           <CustomFormField name='isbn' control={form.control} />
-          <CustomFormField name='edition' control={form.control} />
+          <CustomFormField
+            name='edition'
+            type='number'
+            control={form.control}
+          />
           <CustomFormSelect
             name='category'
             control={form.control}

@@ -42,9 +42,9 @@ const AuthorsPage = () => {
                       {author?.name}
                     </p>
 
-                    <p className='pl-4 my-4 font-bold text-gray-500'>
+                    {/* <p className='pl-4 my-4 font-bold text-gray-500'>
                       {author?.description}
-                    </p>
+                    </p> */}
                   </div>
                 </Link>
                 <div className='flex justify-between p-4 '>

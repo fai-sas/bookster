@@ -1,11 +1,23 @@
 'use client'
 
+import BooksByAuthor from '@/components/BooksByAuthor'
 import { useGetSingleAuthorQuery } from '@/redux/features/authors/authorsApi'
+import { useGetBooksQuery } from '@/redux/features/books/booksApi'
 import Image from 'next/image'
 
 const AuthorDetailsPage = ({ params }) => {
   const { id } = params
   const { data, isLoading } = useGetSingleAuthorQuery(id)
+
+  const { data: books } = useGetBooksQuery()
+
+  const authorName = data?.name
+
+  const booksByAuthor = books?.books
+
+  const matchingBooks = booksByAuthor?.filter(
+    (book) => book?.author === authorName
+  )
 
   if (isLoading) {
     return <h1 className='p-8 text-4xl font-bold'>Loading.........</h1>
@@ -37,15 +49,17 @@ const AuthorDetailsPage = ({ params }) => {
             <div className='flex flex-wrap justify-center'>
               <div className='w-full px-4'>
                 <p className='mb-4 font-light leading-relaxed text-slate-600'>
-                  An artist of considerable range, Mike is the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy writes, performs
-                  and records all of his own music, giving it a warm.
+                  {data?.description}
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <main>
+        <BooksByAuthor matchingBooks={matchingBooks} />
+      </main>
     </>
   )
 }
