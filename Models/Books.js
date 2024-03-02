@@ -55,6 +55,10 @@ const Books = mongoose.Schema(
       type: Number,
       min: 1,
     },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
     stock: {
       type: Number,
       required: [true, 'Please provide stock quantity'],
