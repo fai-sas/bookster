@@ -18,19 +18,13 @@ import {
 import { useGetCategoriesQuery } from '@/redux/features/categories/categoriesApi'
 import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
 
-export default function Navbar() {
+export default function NavbarDropdown() {
   const { data: categories } = useGetCategoriesQuery()
   const { data: authors } = useGetAuthorsQuery()
 
   return (
-    <NavigationMenu className='container p-8 justify-evenly '>
+    <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href='/'>
-            <h1 className='text-xl font-bold '>Bookster</h1>{' '}
-          </Link>
-        </NavigationMenuItem>
-
         <NavigationMenuItem>
           <NavigationMenuTrigger className='text-lg font-bold '>
             Authors
@@ -40,7 +34,6 @@ export default function Navbar() {
               {authors?.authors?.map((author) => (
                 <ListItem
                   key={author?._id}
-                  // title={author?.name}
                   href={`/authors/${author?._id}`}
                   className='font-bold '
                 >
@@ -67,9 +60,6 @@ export default function Navbar() {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem className='text-lg font-bold '>
-          <UserButton showName afterSignOutUrl='/' />
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

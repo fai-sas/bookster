@@ -23,8 +23,8 @@ const Sidebar = () => {
   const pathName = usePathname()
 
   return (
-    <aside className='h-full px-8 py-4 bg-muted'>
-      <h1>Bookster</h1>
+    <aside className='h-full px-8 py-4 rounded-md bg-muted'>
+      {/* <h1>Bookster</h1> */}
       <div className='flex flex-col mt-20 gap-y-4'>
         {links.map((link) => {
           return (
