@@ -5,7 +5,7 @@ const BooksByAuthor = ({ matchingBooks }) => {
   console.log(matchingBooks)
   return (
     <main className='container grid grid-cols-1 p-8 mx-auto md:grid-cols-3 '>
-      {matchingBooks.map((book) => {
+      {matchingBooks?.map((book) => {
         const image = book?.image?.[0]
         return (
           <div key={book?._id} className='m-8 bg-gray-100 '>
