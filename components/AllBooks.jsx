@@ -46,8 +46,17 @@ const AllBooks = () => {
                   </p>
 
                   <p className='pl-4 my-4 font-bold text-gray-500'>
-                    {book?.description}
+                    {(book?.description || '').slice(0, 30)}...
                   </p>
+
+                  <div className='flex gap-4 '>
+                    <p className='my-4 ml-4 font-semibold text-gray-800'>
+                      $ {book?.price}
+                    </p>
+                    <p className='my-4 ml-4 font-semibold text-gray-800'>
+                      in stock {book?.stock}
+                    </p>
+                  </div>
                 </div>
               </Link>
               <div className='flex justify-between p-4 '>
