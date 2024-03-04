@@ -1,21 +1,48 @@
 'use client'
 
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { usePathname } from 'next/navigation'
 
+const SHEET_SIDES = ['left']
+
 const links = [
   {
-    href: '/author1',
-    label: 'Author1',
+    href: '/books',
+    label: 'all books',
   },
   {
-    href: 'author2',
-    label: 'Author2',
+    href: '/add-book',
+    label: 'add book',
   },
   {
-    href: 'author3',
-    label: 'Author3',
+    href: '/authors',
+    label: 'all authors',
+  },
+  {
+    href: '/add-author',
+    label: 'add author',
+  },
+  {
+    href: '/categories',
+    label: 'all categories',
+  },
+  {
+    href: '/add-category',
+    label: 'add category',
   },
 ]
 
@@ -23,24 +50,39 @@ const Sidebar = () => {
   const pathName = usePathname()
 
   return (
-    <aside className='h-full px-8 py-4 rounded-md bg-muted'>
-      {/* <h1>Bookster</h1> */}
-      <div className='flex flex-col mt-20 gap-y-4'>
-        {links.map((link) => {
-          return (
-            <Button
-              asChild
-              key={link?.href}
-              variant={pathName === link?.href ? 'default' : 'link'}
-            >
-              <Link href={link?.href} className='flex items-center gap-x-2 '>
-                {link?.icon} <span className='capitalize'>{link?.label}</span>
-              </Link>
-            </Button>
-          )
-        })}
-      </div>
-    </aside>
+    <>
+      <aside className=''>
+        <div className='flex justify-end'>
+          {SHEET_SIDES.map((side) => (
+            <Sheet key={side}>
+              <SheetTrigger asChild>
+                <Button>Menu</Button>
+              </SheetTrigger>
+              <SheetContent className='flex flex-col ' side={side}>
+                {links.map((link) => {
+                  return (
+                    <Button
+                      className='py-4'
+                      asChild
+                      key={link?.href}
+                      variant={pathName === link?.href ? 'default' : 'link'}
+                    >
+                      <Link
+                        href={link?.href}
+                        className='flex items-center gap-x-2 '
+                      >
+                        {link?.icon}{' '}
+                        <span className='capitalize'>{link?.label}</span>
+                      </Link>
+                    </Button>
+                  )
+                })}
+              </SheetContent>
+            </Sheet>
+          ))}
+        </div>
+      </aside>
+    </>
   )
 }
 export default Sidebar

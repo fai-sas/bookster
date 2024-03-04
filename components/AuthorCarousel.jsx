@@ -37,13 +37,13 @@ export default function AuthorCarousel() {
           {data?.authors?.map((author) => (
             <CarouselItem
               key={author?._id}
-              className='md:basis-1/2 lg:basis-1/3'
+              className='md:basis-1/2 lg:basis-1/4'
             >
               <div className='p-1'>
                 <Card>
-                  <CardContent className='flex items-center justify-center p-2 aspect-square'>
+                  <CardContent className='flex items-center justify-center p-2 bg-muted aspect-square'>
                     <Link href={`/authors/${author?._id}`}>
-                      <div className='p-2 duration-150 bg-white rounded-lg shadow cursor-pointer hover:scale-105 hover:shadow-md'>
+                      <div className='p-2 duration-150 rounded-lg cursor-pointer hover:scale-105 hover:shadow-md'>
                         <Image
                           src={author?.image?.[0]}
                           alt={author?.name}

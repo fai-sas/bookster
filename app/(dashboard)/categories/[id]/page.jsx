@@ -1,6 +1,7 @@
 'use client'
 
 import BooksByAuthor from '@/components/BooksByAuthor'
+import Title from '@/components/Title'
 import { useGetBooksQuery } from '@/redux/features/books/booksApi'
 import { useGetSingleCategoryQuery } from '@/redux/features/categories/categoriesApi'
 
@@ -24,7 +25,7 @@ const SingleCategoryPage = ({ params }) => {
 
   return (
     <>
-      <li className='p-2 text-4xl font-bold '>{categories?.name}</li>
+      <Title title={categories?.name} />
       <BooksByAuthor matchingBooks={matchingBooks} />
     </>
   )

@@ -3,6 +3,11 @@ import Image from 'next/image'
 
 const BooksByAuthor = ({ matchingBooks }) => {
   console.log(matchingBooks)
+
+  if (matchingBooks?.length === 0) {
+    return <h1 className='p-8 text-4xl font-bold'>No Books Found</h1>
+  }
+
   return (
     <main className='container grid grid-cols-1 p-8 mx-auto md:grid-cols-3 '>
       {matchingBooks?.map((book) => {
