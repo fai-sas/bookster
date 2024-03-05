@@ -46,7 +46,16 @@ export default function BooksCarousel() {
                           alt={book?.name}
                           width={300}
                           height={200}
+                          placeholder='blur'
+                          blurDataURL='true'
                           className='mx-auto '
+                          style={
+                            {
+                              // width: '100%',
+                              // height: 'auto',
+                              // objectFit: 'cover',
+                            }
+                          }
                         />
                         <p className='my-4 ml-4 text-xl font-semibold text-gray-800'>
                           {book?.name}

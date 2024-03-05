@@ -23,7 +23,7 @@ export default function NavbarDropdown() {
   const { data: authors } = useGetAuthorsQuery()
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className='hidden md:block'>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className='text-lg font-bold '>

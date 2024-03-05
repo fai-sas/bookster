@@ -1,6 +1,7 @@
 import { UserButton } from '@clerk/nextjs'
 import NavbarDropdown from '@/components/NavbarDropdown'
 import Link from 'next/link'
+import MobileMenu from './MobileMenu'
 
 const Navbar = () => {
   return (
@@ -14,6 +15,7 @@ const Navbar = () => {
       <div className='flex items-center gap-x-4'>
         <UserButton showName afterSignOutUrl='/' />
       </div>
+      <MobileMenu />
     </nav>
   )
 }

@@ -18,7 +18,7 @@ const images = [image1, image2, image3]
 
 export default function Banner() {
   return (
-    <Carousel className=''>
+    <Carousel className='w-full '>
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={index}>
