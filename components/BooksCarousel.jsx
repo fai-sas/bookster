@@ -36,11 +36,11 @@ export default function BooksCarousel() {
         <CarouselContent>
           {data?.books?.map((book) => (
             <CarouselItem key={book?._id} className='md:basis-1/2 lg:basis-1/3'>
-              <div className='p-1'>
+              <div className='p-1  w-96'>
                 <Card>
                   <CardContent className='flex items-center justify-center p-2 aspect-square'>
                     <Link href={`/books/${book?._id}`}>
-                      <div className='p-2 duration-150 bg-white rounded-lg shadow cursor-pointer hover:scale-105 hover:shadow-md'>
+                      <div className='p-2 duration-150 bg-white rounded-lg shadow cursor-pointer dark:bg-slate-900 hover:scale-105 hover:shadow-md'>
                         <Image
                           src={book?.image?.[0]}
                           alt={book?.name}

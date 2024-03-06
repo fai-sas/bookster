@@ -11,9 +11,11 @@ import {
 } from '@/components/ui/collapsible'
 import { useGetAuthorsQuery } from '@/redux/features/authors/authorsApi'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function MobileDropdown() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const pathName = usePathname()
 
   const { data: authors } = useGetAuthorsQuery()
 
@@ -38,7 +40,8 @@ export default function MobileDropdown() {
           <ul className='flex flex-col items-start gap-2 '>
             {authors?.authors?.map((author) => (
               <Button
-                variant=' outline'
+                // variant=' outline'
+                variant={pathName === author?.name ? 'default' : 'link'}
                 className='my-2 ml-8 font-bold rounded-md bg-muted'
                 key={author?._id}
               >

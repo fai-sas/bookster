@@ -16,6 +16,7 @@ import { Button } from './ui/button'
 import MobileDropdown from './MobileDropdown'
 import MobileDropdown2 from './MobileDropdown2'
 import { UserButton } from '@clerk/nextjs'
+import ThemeToggle from './ThemeToggle'
 
 const SHEET_SIDES = ['left']
 
@@ -52,6 +53,7 @@ const MobileMenu = () => {
                 ></UserButton>
                 <MobileDropdown />
                 <MobileDropdown2 />
+                <ThemeToggle />
               </SheetContent>
             </Sheet>
           ))}

@@ -24,7 +24,7 @@ export default function Banner() {
           <CarouselItem key={index}>
             <Card>
               <CardContent className='p-0'>
-                <Image src={image} alt={index} />
+                <Image className='rounded-md ' src={image} alt={index} />
               </CardContent>
             </Card>
           </CarouselItem>
