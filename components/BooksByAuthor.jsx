@@ -28,7 +28,7 @@ const BooksByAuthor = ({ matchingBooks }) => {
                   </p>
 
                   <p className='pl-4 my-4 font-bold text-gray-500'>
-                    {book?.description}
+                    {(book?.description || '').slice(0, 30)}...
                   </p>
                 </div>
               </Link>
