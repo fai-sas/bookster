@@ -36,7 +36,7 @@ export default function BooksCarousel() {
         <CarouselContent>
           {data?.books?.map((book) => (
             <CarouselItem key={book?._id} className='md:basis-1/2 lg:basis-1/3'>
-              <div className='p-1  w-96'>
+              <div className='p-1 w-96'>
                 <Card>
                   <CardContent className='flex items-center justify-center p-2 aspect-square'>
                     <Link href={`/books/${book?._id}`}>
@@ -48,7 +48,7 @@ export default function BooksCarousel() {
                           height={200}
                           placeholder='blur'
                           blurDataURL='true'
-                          className='mx-auto '
+                          className='mx-auto rounded-md '
                           style={
                             {
                               // width: '100%',
@@ -63,11 +63,11 @@ export default function BooksCarousel() {
                         <p className='pl-4 my-4 font-bold text-gray-500'>
                           {(book?.description || '').slice(0, 30)}...
                         </p>
-                        <div className='flex gap-4 '>
-                          <p className='my-4 ml-4 font-semibold text-gray-800'>
+                        <div className='flex justify-between p-2 '>
+                          <p className='my-4 ml-4 text-lg font-bold text-gray-800'>
                             $ {book?.price}
                           </p>
-                          <p className='my-4 ml-4 font-semibold text-gray-800'>
+                          <p className='my-4 mr-8 text-lg font-bold text-gray-800'>
                             in stock {book?.stock}
                           </p>
                         </div>
