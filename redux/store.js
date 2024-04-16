@@ -8,7 +8,7 @@ export const store = () => {
       [apiSlice.reducerPath]: apiSlice.reducer,
       authors: authorsSliceReducer,
     },
-    devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools extension
+    // devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools extension
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(apiSlice.middleware),
   })
